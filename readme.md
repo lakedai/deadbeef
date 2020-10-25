@@ -10,7 +10,7 @@
 	./autogen.sh
 	CC=clang CXX=clang++ ./configure --prefix=/tmp --disable-adplug
 	make
-	make install
+	sudo make install
 	sudo cp ~/tmp/lib/deadbeef/artwork.so /opt/deadbeef/lib/deadbeef/
 
 ### build required:(ubuntu20.04)
