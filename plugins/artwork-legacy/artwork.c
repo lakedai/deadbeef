@@ -25,6 +25,7 @@
 #ifdef HAVE_CONFIG_H
     #include "../../config.h"
 #endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -1221,15 +1222,32 @@ extract_relative_path_from_mask (const char *mask, const char *local_path, char 
 }
 
 static int
-local_image_file (const char *cache_path, const char *local_path, const char *uri, DB_vfs_t *vfsplug)
+
+// change to add loading by album
+local_image_file (const char *cache_path, const char *local_path, const char *album, const char *uri, DB_vfs_t *vfsplug)
+//local_image_file (const char *cache_path, const char *local_path, const char *uri, DB_vfs_t *vfsplug)
+
 {
     if (!artwork_filemask) {
         return -1;
     }
 
     trace ("scanning %s for artwork\n", local_path);
-    char filemask[strlen (artwork_filemask)+1];
-    strcpy (filemask, artwork_filemask);
+
+// change to add loading by album
+    char filemask[strlen (artwork_filemask)+1 + (album[0] ? (strlen (album) + 5) << 1 : 0)];
+    if (album[0])
+    {
+        strcpy (filemask, artwork_filemask);
+        strcat (filemask, ";");
+        strcat (filemask, album);
+        strcat (filemask, ".jpg;");
+        strcat (filemask, album);
+        strcat (filemask, ".png");
+    }
+//    char filemask[strlen (artwork_filemask)+1];
+//    strcpy (filemask, artwork_filemask);
+
     const char *filemask_end = filemask + strlen (filemask);
     char *p;
     while (p = strrchr (filemask, ';')) {
@@ -1764,17 +1782,29 @@ process_query (const cover_query_t *query)
         char *fname_copy = strdup (query->fname);
         if (fname_copy) {
             char *vfs_fname = vfs_path (fname_copy);
+
+// change to add loading by album
+            char *album = query->album ? strdup (query->album) : strdup ("");
+
             if (vfs_fname) {
                 /* Search inside scannable VFS containers */
                 DB_vfs_t *plugin = scandir_plug (vfs_fname);
-                if (plugin && !local_image_file (cache_path, vfs_fname, fname_copy, plugin)) {
+
+// change to add loading by album
+                if (plugin && !local_image_file (cache_path, vfs_fname, album, fname_copy, plugin)) {
+//                if (plugin && !local_image_file (cache_path, vfs_fname, fname_copy, plugin)) {
+
                     free (fname_copy);
                     return 1;
                 }
             }
 
             /* Search in file directory */
-            if (!local_image_file (cache_path, dirname (vfs_fname ? vfs_fname : fname_copy), NULL, NULL)) {
+
+// change to add loading by album
+            if (!local_image_file (cache_path, dirname (vfs_fname ? vfs_fname : fname_copy), album, NULL, NULL)) {
+//            if (!local_image_file (cache_path, dirname (vfs_fname ? vfs_fname : fname_copy), NULL, NULL)) {
+
                 free (fname_copy);
                 return 1;
             }
@@ -2288,7 +2318,7 @@ static const char settings_dlg[] =
 // define plugin interface
 static DB_artwork_plugin_t plugin = {
     .plugin.plugin.api_vmajor = DB_API_VERSION_MAJOR,
-    .plugin.plugin.api_vminor = DB_API_VERSION_MINOR,
+    .plugin.plugin.api_vminor = 11,//DB_API_VERSION_MINOR,
     .plugin.plugin.version_major = 1,
     .plugin.plugin.version_minor = DDB_ARTWORK_VERSION,
     .plugin.plugin.type = DB_PLUGIN_MISC,

@@ -1,5 +1,6 @@
 ### change to get artwork from local album image file
 - if no cover image, load distinct file from album name
+- put album.jpg or album.png in that folder, that is all
 
 ### changed src files:
 - 修改：     plugins/artwork-legacy/artwork.c

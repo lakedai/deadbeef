@@ -6,6 +6,12 @@ More info is [here](http://deadbeef.sf.net).
 
 [Join us on slack](https://deadbeef-slack.herokuapp.com)
 
+## Enhancement
+
+- change to get artwork from local album image file
+  - if no cover image, load distinct file by album name
+  - put album.jpg or album.png in that folder, that is all
+
 ## Download development builds
 
 [![Build Status](https://travis-ci.org/DeaDBeeF-Player/deadbeef.svg?branch=master)](https://travis-ci.org/DeaDBeeF-Player/deadbeef)
