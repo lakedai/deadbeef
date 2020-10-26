@@ -1235,18 +1235,19 @@ local_image_file (const char *cache_path, const char *local_path, const char *al
     trace ("scanning %s for artwork\n", local_path);
 
 // change to add loading by album
-    char filemask[strlen (artwork_filemask)+1 + (album[0] ? (strlen (album) + 5) << 1 : 0)];
+    char filemask[strlen (artwork_filemask)+1 + (album[0] ? ((strlen (album) + 5) << 1) : 0)];
+    strcpy (filemask, artwork_filemask);
     if (album[0])
     {
-        strcpy (filemask, artwork_filemask);
         strcat (filemask, ";");
         strcat (filemask, album);
         strcat (filemask, ".jpg;");
         strcat (filemask, album);
         strcat (filemask, ".png");
     }
-//    char filemask[strlen (artwork_filemask)+1];
-//    strcpy (filemask, artwork_filemask);
+
+   // char filemask[strlen (artwork_filemask)+1];
+   // strcpy (filemask, artwork_filemask);
 
     const char *filemask_end = filemask + strlen (filemask);
     char *p;
@@ -1277,11 +1278,13 @@ local_image_file (const char *cache_path, const char *local_path, const char *al
             return 0;
         }
     }
-    if (!scan_local_path ("*.jpg", cache_path, local_path, uri, vfsplug) ||
-        !scan_local_path ("*.jpeg", cache_path, local_path, uri, vfsplug) ||
-        !scan_local_path ("*.png", cache_path, local_path, uri, vfsplug)) {
-        return 0;
-    }
+
+// change to disable loading unrelevant image
+    // if (!scan_local_path ("*.jpg", cache_path, local_path, uri, vfsplug) ||
+    //     !scan_local_path ("*.jpeg", cache_path, local_path, uri, vfsplug) ||
+    //     !scan_local_path ("*.png", cache_path, local_path, uri, vfsplug)) {
+    //     return 0;
+    // }
 
     trace ("No cover art files in local folder\n");
     return -1;
