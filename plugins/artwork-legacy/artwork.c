@@ -1224,7 +1224,7 @@ extract_relative_path_from_mask (const char *mask, const char *local_path, char 
 static int
 
 // change to add loading by album
-local_image_file (const char *cache_path, const char *local_path, const char *album, const char *uri, DB_vfs_t *vfsplug)
+local_image_file (const char *cache_path, const char *local_path, char *album, const char *uri, DB_vfs_t *vfsplug)
 //local_image_file (const char *cache_path, const char *local_path, const char *uri, DB_vfs_t *vfsplug)
 
 {
@@ -1245,6 +1245,7 @@ local_image_file (const char *cache_path, const char *local_path, const char *al
         strcat (filemask, album);
         strcat (filemask, ".png");
     }
+    free (album);
 
    // char filemask[strlen (artwork_filemask)+1];
    // strcpy (filemask, artwork_filemask);

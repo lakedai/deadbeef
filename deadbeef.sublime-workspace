@@ -139,7 +139,7 @@
 			"file": "plugins/artwork-legacy/artwork.c",
 			"settings":
 			{
-				"buffer_size": 81910,
+				"buffer_size": 81922,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -335,9 +335,19 @@
 	],
 	"file_history":
 	[
+		"/home/legend/libs/deadbeef/plugins/artwork-legacy/artwork_internal.c",
+		"/home/legend/libs/deadbeef/main.c",
+		"/home/legend/libs/deadbeef/common.h",
+		"/home/legend/libs/deadbeef/plugins.h",
+		"/home/legend/libs/deadbeef/tools/glade/glade/main.c",
+		"/home/legend/libs/deadbeef/tools/glade/glade/debug.h",
+		"/home/legend/libs/deadbeef/tools/glade/glade/debug.c",
+		"/home/legend/libs/deadbeef/deadbeef.h",
+		"/home/legend/libs/deadbeef/plugins/gtkui/widgets.c",
+		"/home/legend/libs/deadbeef/plugins.c",
+		"/home/legend/libs/deadbeef/playlist.c",
 		"/home/legend/libs/deadbeef/shared/windows/include/fnmatch.h",
 		"/home/legend/libs/deadbeef/shared/windows/mingw32_layer.h",
-		"/home/legend/libs/deadbeef/plugins/artwork-legacy/artwork_internal.c",
 		"/home/legend/libs/deadbeef/plugins/artwork-legacy/artwork_internal.h",
 		"/home/legend/libs/deadbeef/plugins/artwork/artwork.c",
 		"/home/legend/libs/osdlyrics/src/ol_lyric_candidate_selector.c",
@@ -452,17 +462,7 @@
 		"/home/legend/bin/dir",
 		"/home/legend/data/dockerfile/ubuntu-cn/start.sh",
 		"/home/legend/data/dockerfile/gzweb1/Dockerfile",
-		"/home/legend/data/dockerfile/ubuntu-cn/Dockerfile",
-		"/home/legend/data/dockerfile/ignite1/Dockerfile",
-		"/home/legend/data/dockerfile/rosweb/Dockerfile",
-		"/home/legend/data/dockerfile/rosweb1/Dockerfile",
-		"/home/legend/bin/dpl",
-		"/home/legend/bin/dph",
-		"/home/legend/bin/brookinit",
-		"/home/legend/bin/dcp",
-		"/home/legend/data/autossh/lib.systemd.system.ass.service",
-		"/home/legend/data/autossh/空文档",
-		"/home/legend/bin/ssr/run.sh"
+		"/home/legend/data/dockerfile/ubuntu-cn/Dockerfile"
 	],
 	"find":
 	{
@@ -480,6 +480,17 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"cache",
+			"save",
+			"common",
+			"deadbeef",
+			"trace",
+			"artwork_message",
+			"starting",
+			"stopping",
+			"artwork.filemask",
+			"artwork_filemask",
+			"DB_EV_PLAYLIST_REFRESH",
 			"change",
 			"dirent",
 			"filter",
@@ -568,7 +579,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 81910,
+						"buffer_size": 81922,
 						"regions":
 						{
 							"col_808080FF":
@@ -600,8 +611,8 @@
 						"selection":
 						[
 							[
-								45525,
-								45525
+								46246,
+								46246
 							]
 						],
 						"settings":
@@ -611,12 +622,27 @@
 							{
 								"close":
 								{
+									"1":
+									[
+										47664,
+										47665
+									]
 								},
 								"icon":
 								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"region.purplish"
+									]
 								},
 								"open":
 								{
+									"1":
+									[
+										45746,
+										45747
+									]
 								},
 								"unmatched":
 								{
@@ -624,31 +650,16 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
@@ -664,16 +675,31 @@
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
@@ -685,7 +711,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 25674.0,
+						"translation.y": 25683.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -775,7 +801,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 345.0,
+	"side_bar_width": 339.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
