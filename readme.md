@@ -1,4 +1,4 @@
-### change to get artwork from local album image file
+### change to get artwork from local image file if no cover image
 - if no cover image, load image for every song
 - use album or title or file name for search
 - put album.jpg or album.png or title.jpg or title.png or filename.jpg or filename.png in that folder, that is all

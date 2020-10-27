@@ -8,9 +8,10 @@ More info is [here](http://deadbeef.sf.net).
 
 ## Enhancement
 
-- change to get artwork from local album image file
-  - if no cover image, load distinct file by album name
-  - put album.jpg or album.png in that folder, that is all
+- change to get artwork from local image file if no cover image
+  - if no cover image, load image for every song
+  - use album or title or file name for search
+  - put album.jpg or album.png or title.jpg or title.png or filename.jpg or filename.png in that folder, that is all
 
 ## Download development builds
 
