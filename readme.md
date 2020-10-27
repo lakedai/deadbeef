@@ -1,6 +1,8 @@
 ### change to get artwork from local album image file
 - if no cover image, load distinct file from album name
-- put album.jpg or album.png in that folder, that is all
+- the song must have artist/album/title - use album for search
+- or artist/title - use title as album for search
+- put album.jpg or album.png or title.jpg or title.png in that folder, that is all
 
 ### changed src files:
 - 修改：     plugins/artwork-legacy/artwork.c
