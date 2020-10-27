@@ -1186,7 +1186,6 @@ scan_local_path (char *mask, const char *cache_path, const char *local_path, con
     int files_count = custom_scandir (local_path, &files, filter_custom, NULL);
     if (files_count > 0) {
         char *artwork_path = uri ? vfs_scan_results (files[0], uri) : dir_scan_results (files, files_count, local_path);
-
         for (size_t i = 0; i < files_count; i++) {
             free (files[i]);
         }
@@ -1224,7 +1223,7 @@ extract_relative_path_from_mask (const char *mask, const char *local_path, char 
 static int
 
 // change to add loading by album
-local_image_file (const char *cache_path, const char *local_path, char *album, const char *uri, DB_vfs_t *vfsplug)
+local_image_file (const char *cache_path, const char *local_path, char *album, const char *fname, const char *uri, DB_vfs_t *vfsplug)
 //local_image_file (const char *cache_path, const char *local_path, const char *uri, DB_vfs_t *vfsplug)
 
 {
@@ -1235,7 +1234,15 @@ local_image_file (const char *cache_path, const char *local_path, char *album, c
     trace ("scanning %s for artwork\n", local_path);
 
 // change to add loading by album
-    char filemask[strlen (artwork_filemask)+1 + (album[0] ? ((strlen (album) + 5) << 1) : 0)];
+    char *fn = strrchr (fname, '/');
+    (fn) ? fn++ : (fn = fname);
+    int fl = strlen (fn);
+    char *dot = strrchr (fn, '.');
+    if (dot)
+    {
+        fl -= strlen (dot);
+    }
+    char filemask[strlen (artwork_filemask)+1 + (album[0] ? ((strlen (album) + 5) << 1) : 0) + ((fl + 5) << 1)];
     strcpy (filemask, artwork_filemask);
     if (album[0])
     {
@@ -1245,6 +1252,12 @@ local_image_file (const char *cache_path, const char *local_path, char *album, c
         strcat (filemask, album);
         strcat (filemask, ".png");
     }
+    strcat (filemask, ";");
+    strncat (filemask, fn, fl);
+    strcat (filemask, ".jpg;");
+    strncat (filemask, fn, fl);
+    strcat (filemask, ".png");
+
     free (album);
 
    // char filemask[strlen (artwork_filemask)+1];
@@ -1795,7 +1808,7 @@ process_query (const cover_query_t *query)
                 DB_vfs_t *plugin = scandir_plug (vfs_fname);
 
 // change to add loading by album
-                if (plugin && !local_image_file (cache_path, vfs_fname, album, fname_copy, plugin)) {
+                if (plugin && !local_image_file (cache_path, vfs_fname, album, query->fname, fname_copy, plugin)) {
 //                if (plugin && !local_image_file (cache_path, vfs_fname, fname_copy, plugin)) {
 
                     free (fname_copy);
@@ -1806,7 +1819,7 @@ process_query (const cover_query_t *query)
             /* Search in file directory */
 
 // change to add loading by album
-            if (!local_image_file (cache_path, dirname (vfs_fname ? vfs_fname : fname_copy), album, NULL, NULL)) {
+            if (!local_image_file (cache_path, dirname (vfs_fname ? vfs_fname : fname_copy), album, query->fname, NULL, NULL)) {
 //            if (!local_image_file (cache_path, dirname (vfs_fname ? vfs_fname : fname_copy), NULL, NULL)) {
 
                 free (fname_copy);
