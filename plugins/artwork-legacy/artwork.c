@@ -25,7 +25,6 @@
 #ifdef HAVE_CONFIG_H
     #include "../../config.h"
 #endif
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -1186,6 +1185,7 @@ scan_local_path (char *mask, const char *cache_path, const char *local_path, con
     int files_count = custom_scandir (local_path, &files, filter_custom, NULL);
     if (files_count > 0) {
         char *artwork_path = uri ? vfs_scan_results (files[0], uri) : dir_scan_results (files, files_count, local_path);
+
         for (size_t i = 0; i < files_count; i++) {
             free (files[i]);
         }
@@ -1262,6 +1262,7 @@ local_image_file (const char *cache_path, const char *local_path, char *album, c
 
    // char filemask[strlen (artwork_filemask)+1];
    // strcpy (filemask, artwork_filemask);
+// change end
 
     const char *filemask_end = filemask + strlen (filemask);
     char *p;
@@ -2335,7 +2336,12 @@ static const char settings_dlg[] =
 // define plugin interface
 static DB_artwork_plugin_t plugin = {
     .plugin.plugin.api_vmajor = DB_API_VERSION_MAJOR,
-    .plugin.plugin.api_vminor = 11,//DB_API_VERSION_MINOR,
+
+    // change to edit
+    .plugin.plugin.api_vminor = 11,
+    //.plugin.plugin.api_vminor = DB_API_VERSION_MINOR,
+    // change end
+
     .plugin.plugin.version_major = 1,
     .plugin.plugin.version_minor = DDB_ARTWORK_VERSION,
     .plugin.plugin.type = DB_PLUGIN_MISC,
